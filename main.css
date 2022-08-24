@@ -59,6 +59,17 @@ html,body {
     border-radius: 5px;
     
 }
+.todo-switch-input{
+    outline: none;
+    margin-top: 24px;
+    width: 500px;
+    height: 30px;
+    color: #000000;
+    border: 1px solid #C8C8C8;
+    border-radius: 5px;
+    
+}
+
 .container-container{
     display: flex;
     justify-content: center; 

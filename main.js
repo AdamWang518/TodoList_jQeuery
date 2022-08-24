@@ -205,13 +205,19 @@ function restore(value) {
 }
 function expand() {
     let bottom = $('#item-bottom_0');
+    let input=$('#todo-input');
     if (bottom.hasClass('todo-switch-bottom')) {
-        bottom.addClass('todo-item-bottom')
-        bottom.removeClass('todo-switch-bottom')
+        bottom.addClass('todo-item-bottom');
+        bottom.removeClass('todo-switch-bottom');
+        
+        input.addClass('todo-switch-input');
+        input.removeClass('todo-input');
     }
     else {
         bottom.removeClass('todo-item-bottom')
         bottom.addClass('todo-switch-bottom')
+        input.addClass('todo-input');
+        input.removeClass('todo-switch-input');
     }
 
 }
