@@ -47,6 +47,7 @@ function editText(type, textID, inputID) {
     let todoText = $("#" + textID);
     let todoTextInput = $("#" + inputID);
     if (type == "click") {
+        todoTextInput.val(todoText.text());
         console.log("click");
         todoText.addClass("todo-text-switch");
         todoText.removeClass("todo-text");
@@ -56,6 +57,7 @@ function editText(type, textID, inputID) {
         todoTextInput.focus();
     }
     else if (type == "blur") {
+        todoText.val(todoTextInput.text());
         console.log("blur");
         todoText.removeClass("todo-text-switch");
         todoText.addClass("todo-text");
@@ -121,7 +123,7 @@ function upDate(index) {
         url: 'http://localhost:63320/updateTodoList',
         method: 'post',
         dataType: 'json',
-        data: { 'text': todo_text.val(), 'date': date.val(), 'time': time.val(), 'comment': comment.val(), 'id': index, 'isComplete': todo_check.val(), 'isMarked': todo_mark },
+        data: { 'text': todo_text.text(), 'date': date.val(), 'time': time.val(), 'comment': comment.val(), 'id': index, 'isComplete': todo_check.val(), 'isMarked': todo_mark },
 
         success: function (res) {
             destroy();
@@ -139,11 +141,12 @@ function edit(index) {
     let comment = $(`#comment_${index}`);
     let mark = $(`#star_${index}`);
     let todo_mark;
+    let item_bottom=$(`item-bottom_${index}`)
     if (mark.hasClass("todo-edit-star")) {
         todo_mark = true;
     }
     else {
-        todo_mark = false;item_deletede
+        todo_mark = false;
     }
     $.ajax({
         url: 'http://localhost:63320/updateTodoList',
@@ -151,7 +154,10 @@ function edit(index) {
         dataType: 'json',
         data: { 'text': todo_text.text(), 'date': date.val(), 'time': time.val(), 'comment': comment.val(), 'id': index, 'isComplete': todo_check.val(), 'isMarked': todo_mark },
 
-        success: function (res) { console.log(res) },
+        success: function (res) { console.log(res) 
+            item_bottom.addClass('todo-switch-bottom');
+            item_bottom.removeClass('todo-item-bottom');
+        },
         error: function (err) { console.log(err) },
     });
 
