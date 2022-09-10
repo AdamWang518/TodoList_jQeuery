@@ -106,6 +106,7 @@ function test() {
 function upDate(index) {
 
     let todo_check = $(`#todo-check_${index}`);
+    // console.log(todo_check.prop("checked"));
     let todo_text = $(`#todo-text_${index}`);
     let date = $(`#date_${index}`);
     let time = $(`#time_${index}`);
@@ -123,7 +124,7 @@ function upDate(index) {
         url: 'http://localhost:63320/updateTodoList',
         method: 'post',
         dataType: 'json',
-        data: { 'text': todo_text.text(), 'date': date.val(), 'time': time.val(), 'comment': comment.val(), 'id': index, 'isComplete': todo_check.val(), 'isMarked': todo_mark },
+        data: { 'text': todo_text.text(), 'date': date.val(), 'time': time.val(), 'comment': comment.val(), 'id': index, 'isComplete': todo_check.prop("checked"), 'isMarked': todo_mark },
 
         success: function (res) {
             destroy();
@@ -445,7 +446,6 @@ function create() {
         success: function (res) {
             array = res["data"]
             array.forEach(function (value) {
-                console.log("insert");
                 insert(value)
             });
         },
